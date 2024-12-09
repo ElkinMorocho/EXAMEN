@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Estudiantes</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/index.html" class="text-xl font-bold">Biblioteca</a>
+            <ul class="flex space-x-4">
+                <li><a href="/index.html" class="hover:underline">Administrar Libros</a></li>
+                <li><a href="/pages/estudiantes.html" class="hover:underline">Administrar Estudiantes</a></li>
+                <li><a href="/pages/prestamos.html" class="hover:underline">Administrar Préstamos</a></li>
+                <li><a href="/pages/devoluciones.html" class="hover:underline">Devoluciones</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 p-4 bg-white shadow rounded">
+        <header class="mb-4">
+            <h1 class="text-2xl font-bold text-gray-700">Administrar Estudiantes</h1>
+        </header>
+
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr>
+                    <th class="border-b p-2">iD</th>
+                    <th class="border-b p-2">Cédula</th>
+                    <th class="border-b p-2">Nombre</th>
+                    <th class="border-b p-2">Apellido</th>
+                    <th class="border-b p-2">Sexo</th>
+                    <th class="border-b p-2">Fecha de Nacimiento</th>
+                    <th class="border-b p-2">Sancionado</th>
+                    <th class="border-b p-2">Sancion Activa Hasta</th>
+                    <th class="border-b p-2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="estudiantes-table">
+            </tbody>
+        </table>
+        <div class="mt-6">
+            <h2 class="text-xl font-bold mb-4">Agregar Nuevo Estudiante</h2>
+            <form id="estudiante-form" class="space-y-4">
+                <div>
+                    <label for="cedula" class="block text-sm font-medium text-gray-700">Cédula</label>
+                    <input type="text" id="cedula" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                </div>
+                <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input type="text" id="nombre" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                </div>
+                <div>
+                    <label for="apellido" class="block text-sm font-medium text-gray-700">Apellido</label>
+                    <input type="text" id="apellido" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                </div>
+                <div>
+                    <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
+                    <select id="sexo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <option value="">Seleccione Genero</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="fechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+                    <input type="date" id="fechaNacimiento" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                </div>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Agregar Estudiante</button>
+            </form>
+
+        </div>
+    </div>
+    <script type="module" src="./estudiantes.ts"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Préstamos</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/index.html" class="text-xl font-bold">Biblioteca</a>
+            <ul class="flex space-x-4">
+                <li><a href="/index.html" class="hover:underline">Administrar Libros</a></li>
+                <li><a href="/pages/estudiantes.html" class="hover:underline">Administrar Estudiantes</a></li>
+                <li><a href="/pages/prestamos.html" class="hover:underline">Administrar Préstamos</a></li>
+                <li><a href="/pages/devoluciones.html" class="hover:underline">Devoluciones</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 p-4 bg-white shadow rounded">
+        <header class="mb-4">
+            <h1 class="text-2xl font-bold text-gray-700">Administrar Préstamos</h1>
+        </header>
+
+        <form id="formPrestamo" class="bg-white p-6 shadow-lg rounded-lg space-y-6">
+            <div class="mb-4">
+                <label for="selectEstudiantes" class="block text-lg font-medium text-gray-700">Seleccionar Estudiante</label>
+                <select id="selectEstudiantes" class="block w-full mt-2 p-2 border border-gray-300 rounded-lg" required>
+                    <option value="">Seleccione un estudiante</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="selectLibros" class="block text-lg font-medium text-gray-700">Seleccionar Libros</label>
+                <select id="selectLibros" multiple class="block w-full mt-2 p-2 border border-gray-300 rounded-lg" required>
+                    <option value="" disabled>Seleccione uno o más libros</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="fechaPrestamo" class="block text-lg font-medium text-gray-700">Fecha de Préstamo</label>
+                <input type="date" id="fechaPrestamo" class="block w-full mt-2 p-2 border border-gray-300 rounded-lg" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="fechaEntrega" class="block text-lg font-medium text-gray-700">Fecha de Entrega</label>
+                <input type="date" id="fechaEntrega" class="block w-full mt-2 p-2 border border-gray-300 rounded-lg" required>
+            </div>
+
+            <button type="submit" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Realizar Préstamo</button>
+        </form>
+
+        <div class="mt-8">
+            <h2 class="text-xl font-bold mb-4 text-gray-700">Listado de Préstamos</h2>
+            <table class="table-auto w-full border-collapse border border-gray-200">
+                <thead>
+                    <tr>
+                        <th class="border px-4 py-2">ID Prestamo</th>
+                        <th class="border px-4 py-2">Número Cédula</th>
+                        <th class="border px-4 py-2">Código de Libro</th>
+                        <th class="border px-4 py-2">Fecha de Préstamo</th>
+                        <th class="border px-4 py-2">Fecha de Entrega</th>
+                        <th class="border px-4 py-2">Devuelto</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaPrestamosBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./prestamos.ts" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Libros</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold">Biblioteca</a>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:underline">Administrar Libros</a></li>
+                <li><a href="pages/estudiantes.html" class="hover:underline">Administrar Estudiantes</a></li>
+                <li><a href="pages/prestamos.html" class="hover:underline">Administrar Préstamos</a></li>
+                <li><a href="pages/devoluciones.html" class="hover:underline">Devoluciones</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto mt-8 p-4 bg-white shadow rounded">
+        <header class="mb-4">
+            <h1 class="text-2xl font-bold text-gray-700">Administrar Libros</h1>
+        </header>
+
+        <div class="mb-4">
+            <button id="btnAgregarLibro" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                Agregar Nuevo Libro
+            </button>
+        </div>
+
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead class="bg-blue-100">
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">Código</th>
+                    <th class="border border-gray-300 px-4 py-2">Nombre</th>
+                    <th class="border border-gray-300 px-4 py-2">Autor</th>
+                    <th class="border border-gray-300 px-4 py-2">Editorial</th>
+                    <th class="border border-gray-300 px-4 py-2">Categoría</th>
+                    <th class="border border-gray-300 px-4 py-2">Tipo</th>
+                    <th class="border border-gray-300 px-4 py-2">Año de Publicación</th>
+                    <th class="border border-gray-300 px-4 py-2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaLibros" class="text-center">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modalAgregarLibro" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-8 rounded shadow-md w-1/2 relative">
+            <button id="btnCerrarModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl font-bold">
+            &times;
+        </button>
+
+            <h2 class="text-lg font-bold mb-4">Agregar Nuevo Libro</h2>
+            <form id="formAgregarLibro">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="codigo" class="block text-sm font-medium">Código</label>
+                        <input type="text" id="codigo" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="nombre" class="block text-sm font-medium">Nombre</label>
+                        <input type="text" id="nombre" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="autor" class="block text-sm font-medium">Autor</label>
+                        <input type="text" id="autor" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="editorial" class="block text-sm font-medium">Editorial</label>
+                        <input type="text" id="editorial" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="categoria" class="block text-sm font-medium">Categoría</label>
+                        <select id="categoria" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                        <option value="" disabled selected>Selecciona una categoría</option>
+                        <option value="Literatura">Literatura</option>
+                        <option value="Salud">Salud</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Erótico">Erótico</option>
+                        <option value="Ciencia Ficción">Ciencia Ficción</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label for="tipo" class="block text-sm font-medium">Tipo</label>
+                        <select id="tipo" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                        <option value="" disabled selected>Selecciona el tipo</option>
+                        <option value="Libro">Libro</option>
+                        <option value="Revista">Revista</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label for="anio_publicacion" class="block text-sm font-medium">Año de Publicación</label>
+                        <input type="number" id="anio_publicacion" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-end">
+                    <button type="button" id="btnCancelar" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mr-2">
+                    Cancelar
+                </button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Guardar
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalEditarLibro" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-8 rounded shadow-md w-1/2 relative">
+            <button id="btnCerrarModalEditar" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl font-bold">
+                &times;
+            </button>
+
+            <h2 class="text-lg font-bold mb-4">Editar Libro</h2>
+            <form id="formEditarLibro">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="codigoEditar" class="block text-sm font-medium">Código</label>
+                        <input type="text" id="codigoEditar" class="border border-gray-300 rounded px-3 py-2 w-full bg-gray-200" readonly>
+                    </div>
+                    <div>
+                        <label for="nombreEditar" class="block text-sm font-medium">Nombre</label>
+                        <input type="text" id="nombreEditar" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="autorEditar" class="block text-sm font-medium">Autor</label>
+                        <input type="text" id="autorEditar" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="editorialEditar" class="block text-sm font-medium">Editorial</label>
+                        <input type="text" id="editorialEditar" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                    <div>
+                        <label for="categoriaEditar" class="block text-sm font-medium">Categoría</label>
+                        <select id="categoriaEditar" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                            <option value="" disabled selected>Selecciona una categoría</option>
+                            <option value="Literatura">Literatura</option>
+                            <option value="Salud">Salud</option>
+                            <option value="Informática">Informática</option>
+                            <option value="Erótico">Erótico</option>
+                            <option value="Ciencia Ficción">Ciencia Ficción</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="tipoEditar" class="block text-sm font-medium">Tipo</label>
+                        <select id="tipoEditar" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                            <option value="" disabled selected>Selecciona el tipo</option>
+                            <option value="Libro">Libro</option>
+                            <option value="Revista">Revista</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="anioEditar" class="block text-sm font-medium">Año de Publicación</label>
+                        <input type="number" id="anioEditar" class="border border-gray-300 rounded px-3 py-2 w-full" required>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-end">
+                    <button type="button" id="btnCancelarEditar" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mr-2">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../libros.ts"></script>
+
+    <script>
+        const modalAgregarLibro = document.getElementById('modalAgregarLibro');
+        const btnAgregarLibro = document.getElementById('btnAgregarLibro');
+        const btnCancelar = document.getElementById('btnCancelar');
+
+        btnAgregarLibro.addEventListener('click', () => {
+            modalAgregarLibro.classList.remove('hidden');
+        });
+
+        btnCancelar.addEventListener('click', () => {
+            modalAgregarLibro.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>

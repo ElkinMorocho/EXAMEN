@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devoluciones</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/index.html" class="text-xl font-bold">Biblioteca</a>
+            <ul class="flex space-x-4">
+                <li><a href="/index.html" class="hover:underline">Administrar Libros</a></li>
+                <li><a href="/pages/estudiantes.html" class="hover:underline">Administrar Estudiantes</a></li>
+                <li><a href="/pages/prestamos.html" class="hover:underline">Administrar Préstamos</a></li>
+                <li><a href="/pages/devoluciones.html" class="hover:underline">Devoluciones</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 p-4 bg-white shadow rounded">
+        <header class="mb-4">
+            <h1 class="text-2xl font-bold text-gray-700">Devoluciones</h1>
+        </header>
+
+        <form id="formDevolucion" class="mt-6 space-y-4">
+            <div>
+                <label for="prestamoId" class="block text-sm font-medium text-gray-700">ID del préstamo:</label>
+                <input type="number" id="prestamoId" required class="mt-1 p-2 w-full border border-gray-300 rounded-md">
+            </div>
+            <div>
+                <label for="fechaDevolucion" class="block text-sm font-medium text-gray-700">Fecha de devolución:</label>
+                <input type="date" id="fechaDevolucion" required class="mt-1 p-2 w-full border border-gray-300 rounded-md">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">
+                Registrar Devolución
+            </button>
+        </form>
+
+        <div id="mensajeError" class="mt-4 text-red-600"></div>
+        <div id="mensajeExito" class="mt-4 text-green-600"></div>
+        <table id="tablaDevoluciones" class="table-auto border-collapse border border-gray-400 w-full mt-4">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">ID del Préstamo</th>
+                    <th class="border border-gray-300 px-4 py-2">Fecha de Devolución</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const script = document.createElement('script');
+            script.src = './devoluciones.ts';
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+
+</html>
